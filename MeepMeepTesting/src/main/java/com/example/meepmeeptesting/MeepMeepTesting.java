@@ -13,7 +13,10 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(69, -69, Math.PI)) // Start in the bottom right corner
-                                .lineToLinearHeading(new Pose2d(60, -35, Math.PI))   // Navigate to the three red lines on the right
+
+
+                                .forward(40)
+
                                 .build()
                 );
 
