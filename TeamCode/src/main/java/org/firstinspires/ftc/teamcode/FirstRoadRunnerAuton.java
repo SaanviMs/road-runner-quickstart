@@ -15,12 +15,15 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0,0,0)); //enter acc stuff later
         Servo servo = hardwareMap.servo.get("servo");
 
+
         waitForStart();
 
         Actions.runBlocking(
-                .splineTo(new Vector2d(30, -20), Math.toRadians(90))
 
+                drive.actionBuilder(new Pose2d(65, -65, 0))
 
+                        .splineTo(new Vector2d(30, -20), Math.toRadians(90))
 
+                        .build());
     }
 }
