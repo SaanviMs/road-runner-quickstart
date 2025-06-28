@@ -20,9 +20,12 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
 
         Actions.runBlocking(
 
-                drive.actionBuilder(new Pose2d(65, -65, 0))
-
-                        .splineTo(new Vector2d(30, -20), Math.toRadians(90))
+                drive.actionBuilder(new Pose2d(8, 63, 0))
+                        .splineTo(new Vector2d(-58, 42), Math.toRadians(270))
+                        // pick up sample
+                        .turn(Math.toRadians(90))
+                        .splineTo(new Vector2d(52, 54), Math.toRadians(45))
+//drop sample
 
                         .build());
     }
