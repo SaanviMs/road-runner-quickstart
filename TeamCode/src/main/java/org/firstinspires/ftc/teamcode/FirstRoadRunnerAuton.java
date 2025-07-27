@@ -15,6 +15,7 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
     public static class Intake {
         private final DcMotor intakeMotor;
 
+
         public Intake(HardwareMap hardwareMap) {
             intakeMotor = hardwareMap.get(DcMotor.class, "Intake");
             intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -34,7 +35,7 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(8, 63, 0))
+                drive.actionBuilder(new Pose2d(55, 63, 0))
                         .strafeTo(new Vector2d(45,-33))
                         /*.afterTime(0.1, () -> somerandommotor.moveintake(-1)) // Moves intake piece down
                         .afterTime(0.05, () -> somerandommotor.rotatefans(1))//starts intake*/

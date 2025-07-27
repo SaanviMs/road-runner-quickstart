@@ -60,11 +60,11 @@ public class TestingRRAuton extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(55, -65, 0)) //drives to first pixel mark
+                drive.actionBuilder(new Pose2d(55, -61, 0)) //drives to first pixel mark
                         .strafeTo(new Vector2d(45,-33))
                         .afterTime(0.1, () -> somerandommotor.moveintake(-1)) // Moves intake piece down
                         .afterTime(0.05, () -> somerandommotor.rotatefans(1))//starts intake
-                        .strafeTo(new Vector2d(-58, -58))
+                        .strafeTo(new Vector2d(-58, -61))
                         .stopAndAdd(() ->somerandommotor.moveintake(1))//moves intake piece back to the blue bin
                         .afterTime(0.1,() -> somerandommotor.rotateWrist(-1)) //rotate wrist towards blue
                         .afterTime(0.1, () ->somerandommotor.rotatefans(1)) // drops pixel into blue bin
@@ -73,7 +73,7 @@ public class TestingRRAuton extends LinearOpMode {
                             somerandommotor.setArmPosition(0.8); // Move servo arm
                             somerandommotor.moveSlides(0);     // stop slides
                         })
-                        .strafeTo(new Vector2d(55, -65))
+                        .strafeTo(new Vector2d(55, -61))
                         .build()
         ); somerandommotor.moveintake(0);
         somerandommotor.moveSlides(0);

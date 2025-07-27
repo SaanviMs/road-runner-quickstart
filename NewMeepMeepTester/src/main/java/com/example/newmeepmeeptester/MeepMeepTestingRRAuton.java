@@ -15,16 +15,16 @@ public class MeepMeepTestingRRAuton {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(55, -65, 0))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(55, -61, 0))
                         .strafeTo(new Vector2d(47,-33))
                                 .waitSeconds(0.1)                            // simulate intake down
                                 .waitSeconds(0.05)                           // simulate intake fan start
-                                .strafeTo(new Vector2d(-58, -58))            // move to blue bin
+                                .strafeTo(new Vector2d(-58, -61))            // move to blue bin
                                 .waitSeconds(0.2)                            // simulate intake motor reversed
                                 .waitSeconds(0.1)                            // wrist rotate
                                 .waitSeconds(0.1)                            // drop pixel
                                 .waitSeconds(0.5)                            // slides + servo
-                                .strafeTo(new Vector2d(55, -65))            // final strafe
+                                .strafeTo(new Vector2d(55, -61))            // final strafe
                                 .build()
                 );
 
