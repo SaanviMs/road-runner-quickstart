@@ -28,7 +28,7 @@ public class autonSamanyu extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, -58, 0));
         Intake intake = new Intake(hardwareMap);
 
         waitForStart();
@@ -36,6 +36,7 @@ public class autonSamanyu extends LinearOpMode {
         Actions.runBlocking(
                 drive.actionBuilder(new Pose2d(0, -58, 0))
                         .turn(Math.toRadians(16.5))
+
                         .lineToX(58)
                         .turn(Math.toRadians(73.5)) //174
                         .turn(Math.toRadians(100.5))

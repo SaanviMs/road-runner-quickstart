@@ -15,6 +15,7 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
     public static class Intake {
         private final DcMotor intakeMotor;
 
+
         public Intake(HardwareMap hardwareMap) {
             intakeMotor = hardwareMap.get(DcMotor.class, "Intake");
             intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -34,12 +35,20 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(8, 63, 0))
-                        .splineTo(new Vector2d(-58, 42), Math.toRadians(270))
-                        .afterTime(0.1, () -> intake.setPower(1))  // pick up sample
-                        .turn(Math.toRadians(90))
-                        .splineTo(new Vector2d(52, 54), Math.toRadians(45))
-                        .afterTime(0.1, () -> intake.setPower(-1)) // drop sample
+                drive.actionBuilder(new Pose2d(55, -61, 0))
+                        .strafeTo(new Vector2d(45,-33))
+                        /*.afterTime(0.1, () -> somerandommotor.moveintake(-1)) // Moves intake piece down
+                        .afterTime(0.05, () -> somerandommotor.rotatefans(1))//starts intake*/
+                        .strafeTo(new Vector2d(-58, -61))
+                        /* .stopAndAdd(() ->somerandommotor.moveintake(1))//moves intake piece back to the blue bin
+                         .afterTime(0.1,() -> somerandommotor.rotateWrist(-1)) //rotate wrist towards blue
+                         .afterTime(0.1, () ->somerandommotor.rotatefans(1)) // drops pixel into blue bin
+                         .afterTime(0.5, () -> {
+                             somerandommotor.moveSlides(0.6);     // Raise slides
+                             somerandommotor.setArmPosition(0.8); // Move servo arm
+                             somerandommotor.moveSlides(0);     // stop slides
+                         })*/
+                        .strafeTo(new Vector2d(55, -61))
                         .build()
         );
 
