@@ -39,7 +39,7 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
                         .strafeTo(new Vector2d(45,-33))
                         /*.afterTime(0.1, () -> somerandommotor.moveintake(-1)) // Moves intake piece down
                         .afterTime(0.05, () -> somerandommotor.rotatefans(1))//starts intake*/
-                        .strafeTo(new Vector2d(-58, -61))
+                        .strafeTo(new Vector2d(-58, -58))
                         /* .stopAndAdd(() ->somerandommotor.moveintake(1))//moves intake piece back to the blue bin
                          .afterTime(0.1,() -> somerandommotor.rotateWrist(-1)) //rotate wrist towards blue
                          .afterTime(0.1, () ->somerandommotor.rotatefans(1)) // drops pixel into blue bin
@@ -49,6 +49,31 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
                              somerandommotor.moveSlides(0);     // stop slides
                          })*/
                         .strafeTo(new Vector2d(55, -61))
+                        .turn(3)
+                        .strafeTo(new Vector2d(58,-40))
+                        .strafeTo(new Vector2d(46,-40))
+                        .turn(1.6)// simulate intake fan start
+                        .strafeTo(new Vector2d(-47, -61))
+                        .turn(1.5)// slides + servo
+                        .strafeTo(new Vector2d(55, -61))
+                        .turn(3.3)
+                        .strafeTo(new Vector2d(58,-40))//second spike mark
+                        .waitSeconds(0.1)                            // simulate intake down
+                        .waitSeconds(0.05)
+                        .strafeTo(new Vector2d(-47, -61))            // move to blue bin
+                        .waitSeconds(0.2)                            // simulate intake motor reversed
+                        .waitSeconds(0.1)                            // wrist rotate
+                        .waitSeconds(0.1)                            // drop pixel
+                        .waitSeconds(0.5)
+                        .turn(1.5)// slides + servo
+                        .strafeTo(new Vector2d(55, -61))
+                        .turn(3.7)
+                        .strafeTo(new Vector2d(63,-33))
+                        .turn(3)
+                        .strafeTo(new Vector2d(-47,-61))
+                        .strafeTo(new Vector2d(-23,-5.6))
+
+
                         .build()
         );
 
