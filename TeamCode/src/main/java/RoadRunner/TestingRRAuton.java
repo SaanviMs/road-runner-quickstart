@@ -74,6 +74,30 @@ public class TestingRRAuton extends LinearOpMode {
                             somerandommotor.moveSlides(0);     // stop slides
                         })
                         .strafeTo(new Vector2d(55, -61))
+                        .turn(3)
+                        .strafeTo(new Vector2d(58,-40))
+                        .strafeTo(new Vector2d(46,-40))
+                        .turn(1.6)// simulate intake fan start
+                        .strafeTo(new Vector2d(-47, -61))
+                        .turn(1.5)// slides + servo
+                        .strafeTo(new Vector2d(55, -61))
+                        .turn(3.3)
+                        .strafeTo(new Vector2d(58,-40))//second spike mark
+                        .waitSeconds(0.1)                            // simulate intake down
+                        .waitSeconds(0.05)
+                        .strafeTo(new Vector2d(-47, -61))            // move to blue bin
+                        .waitSeconds(0.2)                            // simulate intake motor reversed
+                        .waitSeconds(0.1)                            // wrist rotate
+                        .waitSeconds(0.1)                            // drop pixel
+                        .waitSeconds(0.5)
+                        .turn(1.5)// slides + servo
+                        .strafeTo(new Vector2d(55, -61))
+                        .turn(3.7)
+                        .strafeTo(new Vector2d(63,-33))
+                        .turn(3)
+                        .strafeTo(new Vector2d(-47,-61))
+                        .strafeTo(new Vector2d(-23,-5.6))
+
                         .build()
         ); somerandommotor.moveintake(0);
         somerandommotor.moveSlides(0);
