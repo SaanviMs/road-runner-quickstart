@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -11,6 +12,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @Autonomous(name = "autonSamanyu")
 public class autonSamanyu extends LinearOpMode {
+
+    private DcMotor arm;  // class-level arm motor
+    private MecanumDrive drive;
 
     public static class Intake {
         private final DcMotor intakeMotor;
@@ -26,31 +30,54 @@ public class autonSamanyu extends LinearOpMode {
         }
     }
 
+    // Define moveArmTo outside runOpMode, can access class field 'arm'
+    private Action moveArmTo(int targetTicks) {
+        arm.setTargetPosition(targetTicks);
+        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        arm.setPower(1.0);
+
+        return (elapsedTime) -> {
+            return !arm.isBusy();
+        };
+    }
+
+
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, -58, 0));
+        drive = new MecanumDrive(hardwareMap, new Pose2d(0, -58, 0));
         Intake intake = new Intake(hardwareMap);
+        arm = hardwareMap.get(DcMotor.class, "Arm");  // initialize arm motor
 
         waitForStart();
 
         Actions.runBlocking(
                 drive.actionBuilder(new Pose2d(0, -58, 0))
-                        .turn(Math.toRadians(16.5))
+                        // go to first sample
+                        .turn(Math.toRadians(90))
+                        .strafeTo(new Vector2d(58, -38))
+                        .afterTime(1, moveArmTo(100))  // raise arm after 1 second driving
+                        // first sample drop off
+                        .strafeTo(new Vector2d(0, -45))
+                        .turn(Math.toRadians(135))
+                        .strafeTo(new Vector2d(-51, -52))
 
-                        .lineToX(58)
-                        .turn(Math.toRadians(73.5)) //174
-                        .turn(Math.toRadians(100.5))
-                        .lineToX(-40)
-                        .turn(Math.toRadians(181))
-                        .lineToX(48)
-                        .turn(Math.toRadians(75))
-//                        .turn(Math.toRadians(90))
-//                        .lineToX(-37)
-//                        .turn(Math.toRadians(-95))
-//                        .lineToY(-7)
+                        // second sample pickup
+                        .strafeTo(new Vector2d(0, -45))
+                        .turn(Math.toRadians(-135))
+                        .strafeTo(new Vector2d(48, -38))
 
-                        .build());
+                        // second sample drop off
+                        .strafeTo(new Vector2d(0, -46))
+                        .turn(Math.toRadians(135))
+                        .strafeTo(new Vector2d(-51, -52))
 
+                        // head to middle
+                        .strafeTo(new Vector2d(-36, -28))
+                        .turn(Math.toRadians(45))
+                        .lineToY(-12)
+                        .strafeTo(new Vector2d(-26, -12))
+                        .build()
+        );
 
         intake.setPower(0); // stop intake
     }

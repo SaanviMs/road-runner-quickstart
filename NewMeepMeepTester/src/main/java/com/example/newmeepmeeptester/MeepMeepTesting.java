@@ -16,21 +16,34 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(0, -58, 0))
-                .turn(Math.toRadians(16.5))
-                .lineToX(58)
-                .turn(Math.toRadians(73.5)) //174
-                .turn(Math.toRadians(100.5))
-                .lineToX(-40)
-                .turn(Math.toRadians(181))
-                .lineToX(48)
-                .turn(Math.toRadians(75))
                 .turn(Math.toRadians(90))
-                .lineToX(-37)
-                .turn(Math.toRadians(-95))
-                .lineToY(-7)
-//                        .turn(Math.toRadians(90))
-//                        .strafeTo(new Vector2d(58,-))
+
+                .strafeTo(new Vector2d(58,-38))
+
+                //drop off
+                .strafeTo(new Vector2d(0,-45))
+                .turn(Math.toRadians(135))
+                .strafeTo(new Vector2d(-51,-52))
+
+
+                //second sample pickup
+                .strafeTo(new Vector2d(0,-45))
+                .turn(Math.toRadians(-135))
+                .strafeTo(new Vector2d(48,-38))
+
+                //second sample drop off
+                .strafeTo(new Vector2d(0,-46))
+                .turn(Math.toRadians(135))
+                .strafeTo(new Vector2d(-51,-52))
+
+                //head to middle
+//                        .strafeTo(new Vector2d(-36,-28))
+//                        .turn(Math.toRadians(45))
+//                        .lineToY(-12)
+//                        .strafeTo(new Vector2d(-26,-12))
                 .build());
+
+
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
                 .setDarkMode(true)

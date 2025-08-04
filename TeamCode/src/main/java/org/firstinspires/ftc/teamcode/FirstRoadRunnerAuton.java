@@ -29,29 +29,29 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
+        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, -58, 0));
         Intake intake = new Intake(hardwareMap);
 
         waitForStart();
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(55, -61, 0))
-                        .strafeTo(new Vector2d(45,-33))
-                        /*.afterTime(0.1, () -> somerandommotor.moveintake(-1)) // Moves intake piece down
-                        .afterTime(0.05, () -> somerandommotor.rotatefans(1))//starts intake*/
-                        .strafeTo(new Vector2d(-58, -61))
-                        /* .stopAndAdd(() ->somerandommotor.moveintake(1))//moves intake piece back to the blue bin
-                         .afterTime(0.1,() -> somerandommotor.rotateWrist(-1)) //rotate wrist towards blue
-                         .afterTime(0.1, () ->somerandommotor.rotatefans(1)) // drops pixel into blue bin
-                         .afterTime(0.5, () -> {
-                             somerandommotor.moveSlides(0.6);     // Raise slides
-                             somerandommotor.setArmPosition(0.8); // Move servo arm
-                             somerandommotor.moveSlides(0);     // stop slides
-                         })*/
-                        .strafeTo(new Vector2d(55, -61))
+                drive.actionBuilder(new Pose2d(0, -58, 0))
+                        .turn(Math.toRadians(16.5))
+                        .lineToX(58)
+                        .turn(Math.toRadians(73.5)) //174
+                        .turn(Math.toRadians(100.5))
+                        .lineToX(-40)
+                        .turn(Math.toRadians(181))
+                        .lineToX(48)
+                        .turn(Math.toRadians(75))
                         .build()
+
         );
 
         intake.setPower(0); // stop intake
     }
+
+
+
+
 }
