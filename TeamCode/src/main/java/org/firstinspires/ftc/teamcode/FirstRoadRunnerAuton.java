@@ -36,9 +36,11 @@ public class FirstRoadRunnerAuton extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(new Pose2d(55, -61, 0))
+                        .turn(1.6)
                         .strafeTo(new Vector2d(45,-33))
                         /*.afterTime(0.1, () -> somerandommotor.moveintake(-1)) // Moves intake piece down
                         .afterTime(0.05, () -> somerandommotor.rotatefans(1))//starts intake*/
+                        .turn(1.6)
                         .strafeTo(new Vector2d(-58, -58))
                         /* .stopAndAdd(() ->somerandommotor.moveintake(1))//moves intake piece back to the blue bin
                          .afterTime(0.1,() -> somerandommotor.rotateWrist(-1)) //rotate wrist towards blue

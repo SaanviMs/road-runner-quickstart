@@ -19,8 +19,8 @@ public class MeepMeepTestingRRAuton {
                         .turn(1.6)
                         .strafeTo(new Vector2d(46,-40))
                                 .waitSeconds(0.1)                            // simulate intake down
-                                .waitSeconds(0.05)
-                        .turn(1.6)// simulate intake fan start
+                                .waitSeconds(0.05)// simulate intake fan start
+                        .turn(1.6)
                                 .strafeTo(new Vector2d(-47, -61))            // move to blue bin
                                 .waitSeconds(0.2)                            // simulate intake motor reversed
                                 .waitSeconds(0.1)                            // wrist rotate
